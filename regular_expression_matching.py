@@ -1,5 +1,16 @@
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
+        """
+        Regular expression matching with support for '.' and '*' can be implemented using dynamic programming.
+        We can define dp[i][j] as a boolean value indicating whether the substring s[:i] matches the pattern p[:j].
+        The base case is dp[0][0] = True, which means an empty string matches an empty pattern.
+        Then, we can consider three cases:
+        If p[j-1] is a non-wildcard character, then s[i-1] and p[j-1] must match, and dp[i][j] is dp[i-1][j-1].
+        If p[j-1] is a wildcard character '.' that matches any single character, then dp[i][j] is dp[i-1][j-1].
+        If p[j-1] is a wildcard character '*' that matches zero or more of the preceding element, then there are two possibilities:
+        a. The '*' matches zero characters, so dp[i][j] is dp[i][j-2].
+        b. The '*' matches one or more characters, so s[i-1] and the preceding character in p must match, and dp[i][j] is dp[i-1][j].
+        """
         m, n = len(s), len(p)
         dp = [[False] * (n+1) for _ in range(m+1)]
         dp[0][0] = True

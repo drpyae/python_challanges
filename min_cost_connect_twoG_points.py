@@ -1,4 +1,8 @@
 class Solution:
+    """
+    To solve this problem, we can use the Hungarian algorithm, 
+    which is a well-known algorithm for solving the minimum weight bipartite matching problem.
+    """
     def connectTwoGroups(self, cost: List[List[int]]) -> int:
         m, n = len(cost), len(cost[0])
         min_arr = [min(x) for x in zip(*cost)]
